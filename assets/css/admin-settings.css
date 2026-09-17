@@ -1,0 +1,319 @@
+/**
+ * Admin Dashboard Styles
+ *
+ * @package UsmanCreativeElementorWidgets
+ * @author  Usman Tayyab (https://www.linkedin.com/in/imuxmantayyab/)
+ */
+
+.ute-admin-wrap {
+  margin: 25px 20px 0 0;
+  max-width: 1200px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+.ute-admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  padding: 24px 30px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  margin-bottom: 24px;
+}
+
+.ute-admin-brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.ute-brand-icon {
+  font-size: 38px;
+  width: 38px;
+  height: 38px;
+  color: #FF5E4D;
+}
+
+.ute-admin-brand h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.ute-brand-sub {
+  margin: 4px 0 0 0;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.ute-admin-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: #475569;
+}
+
+.ute-admin-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+}
+
+.ute-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+.ute-card-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.ute-card-header h2,
+.ute-card-header h3 {
+  margin: 0 0 6px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.ute-card-header p {
+  margin: 0;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.ute-card-body {
+  padding: 24px;
+}
+
+.ute-card-footer {
+  padding: 16px 24px;
+  background: #f8fafc;
+  border-top: 1px solid #f1f5f9;
+}
+
+/* Switch styling */
+.ute-widget-toggle-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.ute-widget-toggle-row:last-child {
+  border-bottom: none;
+}
+
+.ute-widget-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: 80%;
+}
+
+.ute-widget-icon {
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
+  color: #3b82f6;
+}
+
+.ute-widget-info strong {
+  display: block;
+  font-size: 16px;
+  color: #0f172a;
+  margin-bottom: 4px;
+}
+
+.ute-widget-info p {
+  margin: 0;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.ute-switch {
+  position: relative;
+  display: inline-block;
+  width: 52px;
+  height: 28px;
+}
+
+.ute-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.ute-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #cbd5e1;
+  transition: 0.3s;
+  border-radius: 34px;
+}
+
+.ute-slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.3s;
+  border-radius: 50%;
+}
+
+input:checked + .ute-slider {
+  background-color: #10b981;
+}
+
+input:checked + .ute-slider:before {
+  transform: translateX(24px);
+}
+
+/* Presets grid */
+.ute-presets-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.ute-preset-pill {
+  padding: 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.ute-preset-pill strong {
+  display: block;
+  font-size: 14px;
+  color: #1e293b;
+  margin-bottom: 4px;
+}
+
+.ute-preset-pill span {
+  font-size: 12px;
+  color: #64748b;
+  line-height: 1.4;
+  display: block;
+}
+
+/* System info */
+.ute-sys-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 13px;
+}
+
+.ute-sys-item:last-child {
+  border-bottom: none;
+}
+
+.ute-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.ute-badge-success {
+  background: #ecfdf5;
+  color: #059669;
+}
+
+.ute-badge-danger {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.ute-author-card p {
+  margin: 0 0 10px 0;
+  color: #475569;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.ute-author-name {
+  font-size: 16px !important;
+  color: #0f172a !important;
+  margin-bottom: 2px !important;
+}
+
+.ute-author-title {
+  font-size: 13px;
+  color: #2563eb !important;
+  font-weight: 600;
+  margin-bottom: 8px !important;
+}
+
+.ute-author-tagline {
+  font-style: italic;
+  color: #334155 !important;
+  border-left: 3px solid #3b82f6;
+  padding-left: 10px;
+  margin: 8px 0 12px 0 !important;
+  line-height: 1.4;
+}
+
+.ute-author-focus {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 8px 0 12px 0 !important;
+}
+
+.ute-author-focus li {
+  font-size: 12px;
+  color: #334155;
+  margin-bottom: 6px;
+  line-height: 1.45;
+}
+
+.ute-author-status {
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px !important;
+  color: #475569 !important;
+  margin: 12px 0 16px 0 !important;
+}
+
+.ute-author-links p {
+  margin-bottom: 8px;
+}
+
+.ute-author-links p:last-child {
+  margin-bottom: 0;
+}
+
+.ute-btn-block {
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+@media (max-width: 860px) {
+  .ute-admin-grid {
+    grid-template-columns: 1fr;
+  }
+}
