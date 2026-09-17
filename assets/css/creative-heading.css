@@ -1,0 +1,243 @@
+/**
+ * Creative Painter Heading Styles
+ *
+ * @package UsmanCreativeElementorWidgets
+ * @author  Usman Tayyab (https://www.linkedin.com/in/imuxmantayyab/)
+ */
+
+/* Wrapper */
+.ute-heading-wrapper {
+  display: flex;
+  width: 100%;
+  position: relative;
+}
+.ute-heading-wrapper--left {
+  justify-content: flex-start;
+}
+.ute-heading-wrapper--center {
+  justify-content: center;
+}
+.ute-heading-wrapper--right {
+  justify-content: flex-end;
+}
+.ute-heading-wrapper--justify .ute-creative-heading {
+  width: 100%;
+}
+
+/* Heading Main Element */
+.ute-creative-heading {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  cursor: default;
+  outline: none;
+  user-select: none;
+  margin: 0;
+  padding: 18px 48px;
+  min-height: 64px;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.ute-creative-heading a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.ute-creative-heading:focus-visible {
+  outline: 3px solid #2B4CFF;
+  outline-offset: 4px;
+}
+
+/* Paint Layers Container */
+.ute-creative-heading .ute-paint-layers {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 1;
+}
+
+/* Individual Paint Layer */
+.ute-creative-heading .ute-paint-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center center;
+}
+
+.ute-creative-heading .ute-paint-layer svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+  transform: scaleX(var(--ute-stroke-scale-x, 1)) scaleY(var(--ute-stroke-scale-y, 1.5));
+}
+
+.ute-creative-heading .ute-paint-layer--primary {
+  z-index: 2;
+  color: var(--ute-paint-color, #FF5E4D);
+}
+
+.ute-creative-heading:hover .ute-paint-layer--primary {
+  color: var(--ute-paint-hover-color, #FEA502);
+}
+
+.ute-creative-heading .ute-roller-sleeve,
+.ute-creative-heading .ute-roller-cap {
+  transition: fill var(--ute-anim-duration, 0.35s) ease, stroke var(--ute-anim-duration, 0.35s) ease;
+}
+
+.ute-creative-heading:hover .ute-roller-sleeve {
+  fill: var(--ute-roller-hover-sleeve, var(--ute-paint-hover-color, #FEA502)) !important;
+}
+
+.ute-creative-heading:hover .ute-roller-cap {
+  stroke: var(--ute-roller-hover-cap, var(--ute-roller-hover-sleeve, var(--ute-paint-hover-color, #FEA502))) !important;
+  fill: var(--ute-roller-hover-sleeve, var(--ute-paint-hover-color, #FEA502)) !important;
+}
+
+.ute-creative-heading .ute-paint-layer--secondary {
+  z-index: 1;
+  color: var(--ute-secondary-paint-color, rgba(240, 75, 55, 0.45));
+}
+
+.ute-creative-heading .ute-paint-layer--texture {
+  z-index: 3;
+  mix-blend-mode: overlay;
+  opacity: 0.35;
+}
+
+.ute-creative-heading .ute-paint-layer--highlight {
+  z-index: 4;
+  mix-blend-mode: screen;
+  opacity: 0.25;
+}
+
+.ute-creative-heading .ute-paint-layer--shadow {
+  z-index: 0;
+  mix-blend-mode: multiply;
+  opacity: 0.3;
+}
+
+/* Heading Content */
+.ute-heading-content {
+  position: relative;
+  z-index: 6;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ute-icon-gap, 12px);
+  pointer-events: auto;
+}
+
+.ute-heading-text {
+  display: inline-block;
+  color: inherit;
+  line-height: 1.25;
+}
+
+.ute-heading-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.ute-heading-icon svg {
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+}
+
+/* Paint Roller Container */
+.ute-creative-heading .ute-roller-wrap {
+  position: absolute;
+  z-index: 8;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ute-creative-heading .ute-roller-wrap svg {
+  display: block;
+  width: var(--ute-roller-width, 100px);
+  height: var(--ute-roller-height, 130px);
+  overflow: visible;
+}
+
+/* Roller Placements */
+.ute-creative-heading .ute-roller--right {
+  right: -52px;
+  top: 50%;
+  transform: translateY(-50%) translate(var(--ute-roller-offset-x, 26px), var(--ute-roller-offset-y, 0)) rotate(var(--ute-roller-rotation, 0deg)) scale(var(--ute-roller-scale, 1));
+}
+
+.ute-creative-heading .ute-roller--left {
+  left: -52px;
+  top: 50%;
+  transform: translateY(-50%) scaleX(-1) translate(var(--ute-roller-offset-x, 26px), var(--ute-roller-offset-y, 0)) rotate(var(--ute-roller-rotation, 0deg)) scale(var(--ute-roller-scale, 1));
+}
+
+.ute-creative-heading .ute-roller--top {
+  top: -55px;
+  left: 50%;
+  transform: translateX(-50%) rotate(90deg) translate(var(--ute-roller-offset-x, 0), var(--ute-roller-offset-y, 0)) scale(var(--ute-roller-scale, 1));
+}
+
+.ute-creative-heading .ute-roller--bottom {
+  bottom: -55px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-90deg) translate(var(--ute-roller-offset-x, 0), var(--ute-roller-offset-y, 0)) scale(var(--ute-roller-scale, 1));
+}
+
+.ute-creative-heading .ute-roller--custom {
+  right: var(--ute-roller-offset-x, 0);
+  top: var(--ute-roller-offset-y, 0);
+  transform: rotate(var(--ute-roller-rotation, 0deg)) scale(var(--ute-roller-scale, 1));
+}
+
+/* RTL Support */
+[dir="rtl"] .ute-heading-wrapper--left {
+  justify-content: flex-end;
+}
+[dir="rtl"] .ute-heading-wrapper--right {
+  justify-content: flex-start;
+}
+[dir="rtl"] .ute-creative-heading.ute-dir-auto .ute-paint-layer {
+  transform: scaleX(-1);
+}
+[dir="rtl"] .ute-creative-heading.ute-dir-auto .ute-roller--right {
+  right: auto;
+  left: -52px;
+  transform: translateY(-50%) scaleX(-1);
+}
+
+/* Responsive Handling */
+@media (max-width: 767px) {
+  .ute-creative-heading {
+    padding: 14px 28px;
+    font-size: 26px;
+  }
+  .ute-roller--hide-mobile .ute-roller-wrap {
+    display: none !important;
+  }
+}
