@@ -1,0 +1,129 @@
+/**
+ * GPU-Accelerated Animations for Painter Creative Elementor Widgets
+ *
+ * @package UsmanCreativeElementorWidgets
+ * @author  Usman Tayyab (https://www.linkedin.com/in/imuxmantayyab/)
+ */
+
+:root {
+  --ute-anim-ease: cubic-bezier(0.25, 1, 0.5, 1);
+  --ute-anim-duration: 0.35s;
+}
+
+/* Base element transition */
+.ute-creative-button,
+.ute-creative-heading {
+  transition: transform var(--ute-anim-duration) var(--ute-anim-ease),
+              box-shadow var(--ute-anim-duration) var(--ute-anim-ease),
+              filter var(--ute-anim-duration) var(--ute-anim-ease);
+  will-change: transform;
+}
+
+/* Base paint layer transition */
+.ute-paint-layer {
+  transition: transform var(--ute-anim-duration) var(--ute-anim-ease),
+              opacity var(--ute-anim-duration) var(--ute-anim-ease),
+              fill var(--ute-anim-duration) var(--ute-anim-ease);
+  will-change: transform;
+}
+
+/* Hover Effect: Lift */
+.ute-hover-lift:hover {
+  transform: translateY(var(--ute-hover-translate-y, -5px)) scale(var(--ute-hover-scale, 1.02));
+}
+
+/* Hover Effect: Press */
+.ute-hover-press:hover {
+  transform: translateY(var(--ute-hover-translate-y, 3px)) scale(var(--ute-hover-scale, 0.98));
+}
+
+/* Hover Effect: Scale */
+.ute-hover-paint_scale:hover {
+  transform: scale(var(--ute-hover-scale, 1.05));
+}
+
+/* Hover Effect: Rotation */
+.ute-hover-paint_rotation:hover {
+  transform: rotate(var(--ute-hover-rotation, 2.5deg)) scale(1.02);
+}
+
+/* Hover Effect: Skew */
+.ute-hover-skew:hover {
+  transform: skewX(var(--ute-hover-skew, -4deg)) scale(1.02);
+}
+
+/* Hover Effect: Glow */
+.ute-hover-glow:hover {
+  filter: drop-shadow(0 8px 24px rgba(255, 94, 77, 0.45));
+}
+
+/* Paint Expansion Animations */
+.ute-paint-anim-expand:hover .ute-paint-layer--primary {
+  transform: scaleX(1.06) scaleY(1.12);
+}
+
+/* Paint Movement */
+.ute-paint-anim-movement:hover .ute-paint-layer--primary {
+  transform: translateX(8px) translateY(-3px);
+}
+
+/* Paint Directional Swipes */
+.ute-paint-dir-ltr .ute-paint-layer--hover-swipe {
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform var(--ute-anim-duration) var(--ute-anim-ease);
+}
+.ute-paint-dir-ltr:hover .ute-paint-layer--hover-swipe {
+  transform: scaleX(1);
+}
+
+.ute-paint-dir-rtl .ute-paint-layer--hover-swipe {
+  transform-origin: right center;
+  transform: scaleX(0);
+  transition: transform var(--ute-anim-duration) var(--ute-anim-ease);
+}
+.ute-paint-dir-rtl:hover .ute-paint-layer--hover-swipe {
+  transform: scaleX(1);
+}
+
+.ute-paint-dir-center-out .ute-paint-layer--hover-swipe {
+  transform-origin: center center;
+  transform: scale(0);
+  transition: transform var(--ute-anim-duration) var(--ute-anim-ease);
+}
+.ute-paint-dir-center-out:hover .ute-paint-layer--hover-swipe {
+  transform: scale(1);
+}
+
+/* Paint Roller Micro-interaction (Active only when movement animations are enabled) */
+.ute-paint-anim-movement:hover .ute-roller-wrap,
+.ute-hover-paint_movement:hover .ute-roller-wrap {
+  transform: rotate(var(--ute-roller-hover-rot, -4deg)) translateY(-2px) scale(1.03);
+}
+
+/* Heading Highlight Swipes */
+.ute-heading-highlight {
+  position: relative;
+  display: inline-block;
+}
+
+.ute-heading-highlight .ute-heading-brush-svg {
+  transition: transform 0.5s var(--ute-anim-ease), opacity 0.5s ease;
+}
+
+.ute-creative-heading:hover .ute-heading-highlight .ute-heading-brush-svg {
+  transform: scaleX(1.03) scaleY(1.08);
+}
+
+/* Accessibility: Respect Reduced Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+  .ute-creative-button,
+  .ute-paint-layer,
+  .ute-roller-wrap,
+  .ute-heading-brush-svg,
+  .ute-paint-layer--hover-swipe {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}
