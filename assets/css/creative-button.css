@@ -1,0 +1,252 @@
+/**
+ * Creative Painter Button Styles
+ *
+ * @package UsmanCreativeElementorWidgets
+ * @author  Usman Tayyab (https://www.linkedin.com/in/imuxmantayyab/)
+ */
+
+/* Wrapper */
+.ute-button-wrapper {
+  display: flex;
+  width: 100%;
+  position: relative;
+}
+.ute-button-wrapper--left {
+  justify-content: flex-start;
+}
+.ute-button-wrapper--center {
+  justify-content: center;
+}
+.ute-button-wrapper--right {
+  justify-content: flex-end;
+}
+.ute-button-wrapper--justify .ute-creative-button {
+  width: 100%;
+}
+
+/* Button Main Element */
+.ute-creative-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+  padding: 18px 48px;
+  min-height: 64px;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 22px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.ute-creative-button:focus-visible {
+  outline: 3px solid #2B4CFF;
+  outline-offset: 4px;
+}
+
+/* Paint Layers Container */
+.ute-paint-layers {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 1;
+}
+
+/* Individual Paint Layer */
+.ute-paint-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center center;
+}
+
+.ute-paint-layer svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+  transform: scaleX(var(--ute-stroke-scale-x, 1)) scaleY(var(--ute-stroke-scale-y, 1.5));
+}
+
+.ute-paint-layer--primary {
+  z-index: 2;
+  color: var(--ute-paint-color, #FF5E4D);
+}
+
+.ute-creative-button:hover .ute-paint-layer--primary {
+  color: var(--ute-paint-hover-color, #FEA502);
+}
+
+.ute-roller-sleeve,
+.ute-roller-cap {
+  transition: fill var(--ute-anim-duration, 0.35s) ease, stroke var(--ute-anim-duration, 0.35s) ease;
+}
+
+.ute-creative-button:hover .ute-roller-sleeve {
+  fill: var(--ute-roller-hover-sleeve, var(--ute-paint-hover-color, #FEA502)) !important;
+}
+
+.ute-creative-button:hover .ute-roller-cap {
+  stroke: var(--ute-roller-hover-cap, var(--ute-roller-hover-sleeve, var(--ute-paint-hover-color, #FEA502))) !important;
+  fill: var(--ute-roller-hover-sleeve, var(--ute-paint-hover-color, #FEA502)) !important;
+}
+
+.ute-paint-layer--secondary {
+  z-index: 1;
+  color: var(--ute-secondary-paint-color, rgba(240, 75, 55, 0.45));
+}
+
+.ute-paint-layer--texture {
+  z-index: 3;
+  mix-blend-mode: overlay;
+  opacity: 0.35;
+}
+
+.ute-paint-layer--highlight {
+  z-index: 4;
+  mix-blend-mode: screen;
+  opacity: 0.25;
+}
+
+.ute-paint-layer--shadow {
+  z-index: 0;
+  mix-blend-mode: multiply;
+  opacity: 0.3;
+}
+
+/* Button Content */
+.ute-button-content {
+  position: relative;
+  z-index: 6;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ute-icon-gap, 12px);
+  pointer-events: auto;
+}
+
+.ute-button-text {
+  display: inline-block;
+  color: inherit;
+  line-height: 1.2;
+}
+
+.ute-button-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.ute-button-icon svg {
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+}
+
+/* Paint Roller Container */
+.ute-roller-wrap {
+  position: absolute;
+  z-index: 8;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ute-roller-wrap svg {
+  display: block;
+  width: var(--ute-roller-width, 100px);
+  height: var(--ute-roller-height, 130px);
+  overflow: visible;
+}
+
+/* Roller Placements */
+.ute-roller--right {
+  right: -52px;
+  top: 50%;
+  transform: translateY(-50%) translate(var(--ute-roller-offset-x, 26px), var(--ute-roller-offset-y, 0)) rotate(var(--ute-roller-rotation, 0deg)) scale(var(--ute-roller-scale, 1));
+}
+
+.ute-roller--left {
+  left: -52px;
+  top: 50%;
+  transform: translateY(-50%) scaleX(-1) translate(var(--ute-roller-offset-x, 26px), var(--ute-roller-offset-y, 0)) rotate(var(--ute-roller-rotation, 0deg)) scale(var(--ute-roller-scale, 1));
+}
+
+.ute-roller--top {
+  top: -55px;
+  left: 50%;
+  transform: translateX(-50%) rotate(90deg) translate(var(--ute-roller-offset-x, 0), var(--ute-roller-offset-y, 0)) scale(var(--ute-roller-scale, 1));
+}
+
+.ute-roller--bottom {
+  bottom: -55px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-90deg) translate(var(--ute-roller-offset-x, 0), var(--ute-roller-offset-y, 0)) scale(var(--ute-roller-scale, 1));
+}
+
+.ute-roller--custom {
+  right: var(--ute-roller-offset-x, 0);
+  top: var(--ute-roller-offset-y, 0);
+  transform: rotate(var(--ute-roller-rotation, 0deg)) scale(var(--ute-roller-scale, 1));
+}
+
+/* Decorative Paint Splashes */
+.ute-decor-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 7;
+}
+
+.ute-decor-item {
+  position: absolute;
+  display: block;
+}
+
+/* RTL Support */
+[dir="rtl"] .ute-button-wrapper--left {
+  justify-content: flex-end;
+}
+[dir="rtl"] .ute-button-wrapper--right {
+  justify-content: flex-start;
+}
+[dir="rtl"] .ute-creative-button.ute-dir-auto .ute-paint-layer {
+  transform: scaleX(-1);
+}
+[dir="rtl"] .ute-creative-button.ute-dir-auto .ute-roller--right {
+  right: auto;
+  left: -52px;
+  transform: translateY(-50%) scaleX(-1);
+}
+
+/* Responsive Handling */
+@media (max-width: 767px) {
+  .ute-creative-button {
+    padding: 14px 28px;
+    font-size: 18px;
+  }
+  .ute-roller--hide-mobile .ute-roller-wrap {
+    display: none !important;
+  }
+}
