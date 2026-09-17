@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painter Creative Elementor Widgets - Live Interactive Showcase</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Outfit:wght@400;600;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/animations.css">
+  <link rel="stylesheet" href="../assets/css/creative-button.css">
+  <link rel="stylesheet" href="../assets/css/creative-heading.css">
+  <style>
+    :root {
+      --bg-canvas: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border-color: #e2e8f0;
+      --primary-brand: #FF5E4D;
+    }
+    body.dark-mode {
+      --bg-canvas: #090d16;
+      --card-bg: #111827;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border-color: #1f293d;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-canvas);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    header {
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--border-color);
+      padding: 18px 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .brand-logo {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, #FF5E4D, #FF8E53);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 900;
+      font-size: 22px;
+      box-shadow: 0 4px 12px rgba(255, 94, 77, 0.3);
+    }
+    .brand-title {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .brand-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .btn-header {
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--border-color);
+      background: var(--card-bg);
+      color: var(--text-main);
+      transition: all 0.2s;
+    }
+    .btn-header:hover {
+      background: var(--border-color);
+    }
+    .btn-primary {
+      background: #FF5E4D;
+      color: white;
+      border-color: #FF5E4D;
+    }
+    .btn-primary:hover {
+      background: #E84D3D;
+    }
+    
+    /* Layout Grid */
+    main {
+      flex: 1;
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 36px 24px;
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 32px;
+    }
+    
+    /* Sidebar Controls */
+    .controls-panel {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 24px;
+      height: fit-content;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.03);
+    }
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .panel-title {
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .control-group {
+      margin-bottom: 18px;
+    }
+    .control-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .control-input, .control-select {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-canvas);
+      color: var(--text-main);
+      font-size: 14px;
+      font-family: inherit;
+    }
+    .color-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .color-picker {
+      width: 44px;
+      height: 38px;
+      padding: 0;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      cursor: pointer;
+      background: transparent;
+    }
+    
+    /* Preview Canvas Area */
+    .canvas-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    .preview-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.04);
+    }
+    .card-header {
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .card-title {
+      font-size: 17px;
+      font-weight: 700;
+    }
+    .card-tag {
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: rgba(255, 94, 77, 0.12);
+      color: #FF5E4D;
+      font-weight: 700;
+    }
+    .canvas-stage {
+      padding: 60px 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at center, rgba(255, 94, 77, 0.04) 0%, transparent 70%);
+      position: relative;
+    }
+    
+    /* Showcase Gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+    .preset-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 32px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      transition: transform 0.2s;
+    }
+    .preset-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    /* Headings Showcase */
+    .headings-container {
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+      width: 100%;
+      max-width: 700px;
+    }
+
+    @media (max-width: 960px) {
+      main {
+        grid-template-columns: 1fr;
+      }
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand-group">
+      <div class="brand-logo">U</div>
+      <div>
+        <div class="brand-title">Painter Creative Elementor Widgets</div>
+        <div class="brand-subtitle">Artistic Hand-Painted CTA Buttons & Brush Headings &bull; Developed by Usman Tayyab</div>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button class="btn-header" id="themeToggleBtn" onclick="toggleDarkMode()">
+        <span id="themeIcon">&#9790;</span> Toggle Dark Mode
+      </button>
+      <a href="https://www.linkedin.com/in/imuxmantayyab/" target="_blank" class="btn-header btn-primary">
+        LinkedIn Profile
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Interactive Elementor Controls Panel -->
+    <aside class="controls-panel">
+      <div class="panel-header">
+        <span class="panel-title">Interactive Controls</span>
+        <span style="font-size: 11px; color: var(--text-muted);">Elementor Preview</span>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="ctrlButtonText">Button Text</label>
+        <input type="text" id="ctrlButtonText" class="control-input" value="Get Free Quote" oninput="updatePreviewText(this.value)">
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="ctrlPaintColor">Paint Color</label>
+        <div class="color-row">
+          <input type="color" id="ctrlPaintColor" class="color-picker" value="#FF5E4D" onchange="updatePaintColor(this.value)">
+          <span id="paintColorHex" style="font-size: 13px; font-weight: 600;">#FF5E4D (Reference Coral)</span>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="ctrlRollerSleeveColor">Roller Sleeve Color</label>
+        <div class="color-row">
+          <input type="color" id="ctrlRollerSleeveColor" class="color-picker" value="#FF5E4D" onchange="updateRollerSleeveColor(this.value)">
+          <span style="font-size: 13px;">Match Paint</span>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="ctrlRollerHandleColor">Roller Handle Grip Color</label>
+        <div class="color-row">
+          <input type="color" id="ctrlRollerHandleColor" class="color-picker" value="#2B4CFF" onchange="updateRollerHandleColor(this.value)">
+          <span style="font-size: 13px;">#2B4CFF (Cobalt Blue)</span>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="ctrlShape">Brush Shape</label>
+        <select id="ctrlShape" class="control-select" onchange="updateBrushShape(this.value)">
+          <option value="roller-stop-stroke" selected>Roller Stamp & Bristle Stroke (Default)</option>
+          <option value="coral-banner-ref">Coral Banner Stroke</option>
+          <option value="rough-stroke-01">Rough Hand-Painted Stroke</option>
+          <option value="classic-brush-02">Classic Acrylic Brush</option>
+          <option value="dry-brush-03">Dry Bristle Stroke</option>
+          <option value="marker-04">Broad Marker Swipe</option>
+          <option value="organic-05">Fluid Organic Paint Blob</option>
+          <option value="double-brush-06">Double Overlapping Stroke</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="ctrlRollerToggle">Paint Roller Graphic</label>
+        <select id="ctrlRollerToggle" class="control-select" onchange="toggleRoller(this.value)">
+          <option value="yes" selected>Enabled (Right Side)</option>
+          <option value="left">Enabled (Left Side)</option>
+          <option value="no">Disabled</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="ctrlHoverAnim">Hover Effect</label>
+        <select id="ctrlHoverAnim" class="control-select" onchange="updateHoverEffect(this.value)">
+          <option value="lift" selected>Lift Up (Recommended)</option>
+          <option value="press">Press Down</option>
+          <option value="paint_scale">Scale Up</option>
+          <option value="paint_rotation">Subtle Rotation</option>
+          <option value="skew">Dynamic Skew</option>
+          <option value="glow">Paint Glow</option>
+        </select>
+      </div>
+    </aside>
+
+    <!-- Canvas Preview Stages -->
+    <div class="canvas-panel">
+
+      <!-- 1. Primary Reference Design Reproduction -->
+      <section class="preview-card">
+        <div class="card-header">
+          <div class="card-title">1. Reference Target Design (Creative Painter Button)</div>
+          <span class="card-tag">Exact Reference Match</span>
+        </div>
+        <div class="canvas-stage" id="mainStage">
+          <div class="ute-button-wrapper ute-button-wrapper--center">
+            <a href="#" class="ute-creative-button ute-hover-lift ute-paint-anim-expand" id="liveInteractiveButton" style="--ute-paint-color: #FF5E4D; --ute-paint-hover-color: #F24835; --ute-roller-sleeve: #FF5E4D; --ute-roller-frame: #8C96A8; --ute-roller-handle: #2B4CFF; font-family: 'Plus Jakarta Sans', sans-serif;">
+              
+              <!-- Paint Layers Container -->
+              <div class="ute-paint-layers" aria-hidden="true">
+                <div class="ute-paint-layer ute-paint-layer--primary" id="livePaintLayer">
+                  <!-- Injected Vector SVG -->
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 240" preserveAspectRatio="none" fill="currentColor">
+                    <path d="M995,36 C920,35 830,36 750,34 C650,32 550,34 450,35 C350,36 250,38 180,37 C155,37 130,38 105,40 C95,40 88,41 76,44 C68,46 61,49 55,48 C49,47 44,53 46,58 C48,62 43,66 48,71 C51,74 45,78 42,81 C38,85 45,90 42,95 C39,99 33,102 37,107 C40,110 30,112 25,115 C18,119 8,122 2,126 C-2,129 5,134 12,137 C18,139 27,140 33,143 C37,145 32,151 35,156 C38,160 46,164 43,169 C40,173 49,179 52,183 C55,186 64,189 68,192 C75,196 85,197 95,199 C115,202 140,200 175,202 C260,205 360,204 460,205 C560,206 660,204 760,205 C840,206 920,204 995,205 L995,36 Z"/>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Button Content -->
+              <span class="ute-button-content">
+                <span class="ute-button-text" id="liveButtonText">Get Free Quote</span>
+              </span>
+
+              <!-- Paint Roller Assembly -->
+              <div class="ute-roller-wrap ute-roller--right" id="liveRollerWrap" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" fill="none">
+                  <g class="ute-roller-svg-group">
+                    <rect class="ute-roller-sleeve" x="8" y="28" width="48" height="175" rx="8" ry="8" fill="var(--ute-roller-sleeve, #FF5E4D)" />
+                    <rect x="14" y="32" width="8" height="167" rx="4" fill="#ffffff" opacity="0.22" />
+                    <rect x="46" y="32" width="6" height="167" rx="3" fill="#000000" opacity="0.15" />
+                    <ellipse class="ute-roller-sleeve ute-roller-cap" cx="32" cy="30" rx="22" ry="4" fill="var(--ute-roller-sleeve, #FF5E4D)" stroke="var(--ute-roller-cap-color, var(--ute-roller-sleeve, #FF5E4D))" stroke-width="2" />
+                    <ellipse class="ute-roller-sleeve ute-roller-cap" cx="32" cy="201" rx="22" ry="4" fill="var(--ute-roller-sleeve, #FF5E4D)" stroke="var(--ute-roller-cap-color, var(--ute-roller-sleeve, #FF5E4D))" stroke-width="2" />
+
+                    <line x1="32" y1="28" x2="32" y2="16" stroke="var(--ute-roller-frame, #8C96A8)" stroke-width="6" stroke-linecap="round" />
+                    <path d="M 32,16 C 32,12 36,9 42,9 L 66,9 C 74,9 78,13 78,21 L 78,110 C 78,118 74,124 66,124 L 62,124 C 54,124 50,128 50,136 L 50,148 C 50,154 54,158 60,158 L 94,158" 
+                          stroke="var(--ute-roller-frame, #8C96A8)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                    <path d="M 33,17 C 33,14 36,11 42,11 L 66,11 C 72,11 76,14 76,21 L 76,110 C 76,116 72,122 66,122 L 62,122 C 55,122 52,126 52,136 L 52,148 C 52,153 55,156 60,156 L 94,156" 
+                          stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.4" />
+
+                    <g class="ute-roller-handle-wrap">
+                      <rect x="94" y="150" width="10" height="16" rx="2" fill="var(--ute-roller-frame, #727C8F)" />
+                      <path d="M 104,149 C 114,147 132,146 152,145 C 172,144 186,148 190,155 C 193,160 193,162 190,167 C 186,174 172,178 152,177 C 132,176 114,175 104,173 C 100,172 98,168 98,161 C 98,154 100,150 104,149 Z" 
+                            fill="var(--ute-roller-handle, #2B4CFF)" />
+                      <path d="M 108,153 C 122,151 146,150 176,151" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity="0.3" />
+                      <line x1="126" y1="154" x2="126" y2="168" stroke="var(--ute-roller-grip, #182C9E)" stroke-width="2" stroke-linecap="round" />
+                      <line x1="138" y1="154" x2="138" y2="168" stroke="var(--ute-roller-grip, #182C9E)" stroke-width="2" stroke-linecap="round" />
+                      <line x1="150" y1="154" x2="150" y2="168" stroke="var(--ute-roller-grip, #182C9E)" stroke-width="2" stroke-linecap="round" />
+                      <circle cx="180" cy="161" r="3.5" fill="#0B1333" />
+                    </g>
+                  </g>
+                </svg>
+              </div>
+
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Creative Brush Heading Showcase -->
+      <section class="preview-card">
+        <div class="card-header">
+          <div class="card-title">2. Creative Brush Heading Widget Showcase</div>
+          <span class="card-tag">Heading Styles</span>
+        </div>
+        <div class="canvas-stage">
+          <div class="headings-container">
+            
+            <!-- Heading Style 1: Full Paint Stroke Behind Highlight -->
+            <div class="ute-creative-heading ute-heading--align-left">
+              <h2 class="ute-heading-tag" style="font-size: 38px;">
+                <span class="ute-heading-before">High-End </span>
+                <span class="ute-heading-highlight ute-highlight-style--behind" style="--ute-brush-color: #FF5E4D; --ute-highlight-color: #ffffff;">
+                  <span class="ute-heading-brush-wrap" aria-hidden="true">
+                    <span class="ute-heading-brush-svg">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 240" preserveAspectRatio="none" fill="currentColor">
+                        <path d="M12,126 C6,120 18,114 26,110 C32,106 38,98 42,92 C46,86 52,78 48,70 C52,62 60,54 70,50 C82,45 96,44 115,42 C160,38 230,36 320,38 C420,40 520,36 620,37 C720,38 820,35 890,38 C925,39 950,44 968,52 C978,57 986,66 990,75 C994,84 988,94 992,104 C996,114 991,126 995,136 C992,146 984,156 978,166 C970,178 958,186 942,192 C920,200 880,201 830,202 C740,204 640,202 540,203 C430,204 330,202 240,204 C165,205 110,202 75,198 C58,196 46,188 40,178 C34,168 38,158 32,148 C26,140 16,134 12,126 Z"/>
+                      </svg>
+                    </span>
+                  </span>
+                  Painting Services
+                </span>
+                <span class="ute-heading-after"> in Dubai</span>
+              </h2>
+            </div>
+
+            <!-- Heading Style 2: Artistic Underline Swipe -->
+            <div class="ute-creative-heading ute-heading--align-left">
+              <h3 class="ute-heading-tag" style="font-size: 32px;">
+                <span>Commercial & Residential </span>
+                <span class="ute-heading-highlight ute-highlight-style--underline" style="--ute-brush-color: #2B4CFF;">
+                  <span class="ute-heading-brush-wrap" aria-hidden="true">
+                    <span class="ute-heading-brush-svg">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 120" preserveAspectRatio="none" fill="currentColor">
+                        <path d="M10,80 C4,75 12,68 25,64 C60,52 140,48 240,45 C380,42 540,46 680,44 C790,43 890,48 950,54 C978,57 994,64 998,72 C1001,80 985,88 960,92 C910,100 820,98 720,100 C580,102 430,99 300,101 C190,102 100,98 45,92 C28,89 16,84 10,80 Z"/>
+                      </svg>
+                    </span>
+                  </span>
+                  Precision Contractors
+                </span>
+              </h3>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Predefined Style Presets Gallery -->
+      <section class="preview-card">
+        <div class="card-header">
+          <div class="card-title">3. Design Presets Gallery (Multi-Instance Compatibility Test)</div>
+          <span class="card-tag">6 Preset Variations</span>
+        </div>
+        <div class="canvas-stage" style="padding: 40px 24px;">
+          <div class="gallery-grid" style="width: 100%;">
+            
+            <!-- Preset: Orange Acrylic -->
+            <div class="preset-card">
+              <span class="preset-title">Preset: Orange Acrylic</span>
+              <a href="#" class="ute-creative-button ute-hover-lift" style="--ute-paint-color: #FF7A00; --ute-roller-sleeve: #FF7A00; --ute-roller-handle: #111827; font-size: 18px; padding: 14px 40px;">
+                <div class="ute-paint-layers"><div class="ute-paint-layer ute-paint-layer--primary">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 240" preserveAspectRatio="none" fill="currentColor"><path d="M25,130 C20,110 35,90 55,75 C75,60 110,50 160,46 C240,40 360,42 500,41 C650,40 780,44 870,48 C920,50 960,58 980,72 C995,83 998,100 994,120 C990,140 985,160 970,174 C950,188 910,195 860,197 C770,200 640,198 490,199 C340,200 220,198 150,195 C95,192 60,184 42,170 C30,158 26,145 25,130 Z"/></svg>
+                </div></div>
+                <span class="ute-button-content"><span class="ute-button-text">Book Inspection</span></span>
+              </a>
+            </div>
+
+            <!-- Preset: Cool Cyan/Blue -->
+            <div class="preset-card">
+              <span class="preset-title">Preset: Modern Blue Brush</span>
+              <a href="#" class="ute-creative-button ute-hover-press" style="--ute-paint-color: #0284C7; --ute-roller-sleeve: #0284C7; --ute-roller-handle: #0369A1; font-size: 18px; padding: 14px 40px;">
+                <div class="ute-paint-layers"><div class="ute-paint-layer ute-paint-layer--primary">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 240" preserveAspectRatio="none" fill="currentColor"><path d="M12,126 C6,120 18,114 26,110 C32,106 38,98 42,92 C46,86 52,78 48,70 C52,62 60,54 70,50 C82,45 96,44 115,42 C160,38 230,36 320,38 C420,40 520,36 620,37 C720,38 820,35 890,38 C925,39 950,44 968,52 C978,57 986,66 990,75 C994,84 988,94 992,104 C996,114 991,126 995,136 C992,146 984,156 978,166 C970,178 958,186 942,192 C920,200 880,201 830,202 C740,204 640,202 540,203 C430,204 330,202 240,204 C165,205 110,202 75,198 C58,196 46,188 40,178 C34,168 38,158 32,148 C26,140 16,134 12,126 Z"/></svg>
+                </div></div>
+                <span class="ute-button-content"><span class="ute-button-text">Request Estimate</span></span>
+              </a>
+            </div>
+
+            <!-- Preset: Dark Marker -->
+            <div class="preset-card">
+              <span class="preset-title">Preset: Bold Black Marker</span>
+              <a href="#" class="ute-creative-button ute-hover-skew" style="--ute-paint-color: #18181B; --ute-roller-sleeve: #18181B; --ute-roller-handle: #E11D48; font-size: 18px; padding: 14px 40px;">
+                <div class="ute-paint-layers"><div class="ute-paint-layer ute-paint-layer--primary">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 240" preserveAspectRatio="none" fill="currentColor"><path d="M45,45 L975,38 C988,38 995,48 992,62 L965,190 C962,202 950,208 938,206 L15,196 C4,195 -2,185 1,172 L32,58 C34,48 40,45 45,45 Z"/></svg>
+                </div></div>
+                <span class="ute-button-content"><span class="ute-button-text">Call (800) PAINTER</span></span>
+              </a>
+            </div>
+
+            <!-- Preset: Minimalist Clean Stroke -->
+            <div class="preset-card">
+              <span class="preset-title">Preset: Minimal Stroke</span>
+              <a href="#" class="ute-creative-button ute-hover-paint_scale" style="--ute-paint-color: #10B981; --ute-roller-sleeve: #10B981; --ute-roller-handle: #064E3B; font-size: 18px; padding: 14px 40px;">
+                <div class="ute-paint-layers"><div class="ute-paint-layer ute-paint-layer--primary">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 240" preserveAspectRatio="none" fill="currentColor"><path d="M50,120 C40,80 70,50 120,42 C200,30 320,46 450,38 C580,30 720,44 820,38 C900,32 960,60 980,105 C995,140 970,185 910,200 C810,220 680,195 520,205 C380,215 220,200 130,195 C70,190 30,165 50,120 Z"/></svg>
+                </div></div>
+                <span class="ute-button-content"><span class="ute-button-text">Schedule Now</span></span>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="../assets/js/creative-widgets.js"></script>
+  <script>
+    // Brush shapes library for live preview updates
+    const shapes = {
+      'coral-banner-ref': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 240" preserveAspectRatio="none" fill="currentColor"><path d="M995,36 C920,35 830,36 750,34 C650,32 550,34 450,35 C350,36 250,38 180,37 C155,37 130,38 105,40 C95,40 88,41 76,44 C68,46 61,49 55,48 C49,47 44,53 46,58 C48,62 43,66 48,71 C51,74 45,78 42,81 C38,85 45,90 42,95 C39,99 33,102 37,107 C40,110 30,112 25,115 C18,119 8,122 2,126 C-2,129 5,134 12,137 C18,139 27,140 33,143 C37,145 32,151 35,156 C38,160 46,164 43,169 C40,173 49,179 52,183 C55,186 64,189 68,192 C75,196 85,197 95,199 C115,202 140,200 175,202 C260,205 360,204 460,205 C560,206 660,204 760,205 C840,206 920,204 995,205 L995,36 Z"/></svg>',
+      'rough-stroke-01': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 240" preserveAspectRatio="none" fill="currentColor"><path d="M12,126 C6,120 18,114 26,110 C32,106 38,98 42,92 C46,86 52,78 48,70 C52,62 60,54 70,50 C82,45 96,44 115,42 C160,38 230,36 320,38 C420,40 520,36 620,37 C720,38 820,35 890,38 C925,39 950,44 968,52 C978,57 986,66 990,75 C994,84 988,94 992,104 C996,114 991,126 995,136 C992,146 984,156 978,166 C970,178 958,186 942,192 C920,200 880,201 830,202 C740,204 640,202 540,203 C430,204 330,202 240,204 C165,205 110,202 75,198 C58,196 46,188 40,178 C34,168 38,158 32,148 C26,140 16,134 12,126 Z"/></svg>',
+      'classic-brush-02': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 240" preserveAspectRatio="none" fill="currentColor"><path d="M25,130 C20,110 35,90 55,75 C75,60 110,50 160,46 C240,40 360,42 500,41 C650,40 780,44 870,48 C920,50 960,58 980,72 C995,83 998,100 994,120 C990,140 985,160 970,174 C950,188 910,195 860,197 C770,200 640,198 490,199 C340,200 220,198 150,195 C95,192 60,184 42,170 C30,158 26,145 25,130 Z"/></svg>',
+      'dry-brush-03': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 240" preserveAspectRatio="none" fill="currentColor"><path d="M5,115 C12,105 30,100 45,95 C40,88 55,80 65,72 C80,68 110,62 140,58 C210,50 310,48 420,49 C540,50 670,47 780,48 C850,49 910,54 945,62 C965,68 980,78 990,88 C995,95 985,102 992,112 C998,122 990,132 995,142 C988,152 975,165 960,174 C935,185 890,190 840,192 C740,195 620,193 500,194 C380,195 270,193 190,191 C135,188 85,182 55,170 C40,162 25,152 18,140 C10,130 2,122 5,115 Z"/></svg>',
+      'marker-04': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 240" preserveAspectRatio="none" fill="currentColor"><path d="M45,45 L975,38 C988,38 995,48 992,62 L965,190 C962,202 950,208 938,206 L15,196 C4,195 -2,185 1,172 L32,58 C34,48 40,45 45,45 Z"/></svg>',
+      'organic-05': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 240" preserveAspectRatio="none" fill="currentColor"><path d="M50,120 C40,80 70,50 120,42 C200,30 320,46 450,38 C580,30 720,44 820,38 C900,32 960,60 980,105 C995,140 970,185 910,200 C810,220 680,195 520,205 C380,215 220,200 130,195 C70,190 30,165 50,120 Z"/></svg>',
+      'double-brush-06': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 240" preserveAspectRatio="none" fill="currentColor"><path opacity="0.85" d="M30,70 C70,55 180,45 320,48 C480,50 640,42 780,46 C870,48 940,56 970,75 C990,88 985,110 960,122 C920,140 820,138 720,140 C580,142 420,138 280,142 C160,145 70,138 35,120 C10,105 15,82 30,70 Z"/><path d="M60,110 C120,95 240,92 380,95 C540,98 700,92 840,96 C910,98 960,108 985,124 C1005,138 995,165 965,180 C920,202 810,200 700,202 C550,204 380,201 240,203 C140,204 60,195 30,175 C8,160 12,135 30,122 C40,115 50,112 60,110 Z"/></svg>'
+    };
+
+    const buttonEl = document.getElementById('liveInteractiveButton');
+    const textEl = document.getElementById('liveButtonText');
+    const paintLayerEl = document.getElementById('livePaintLayer');
+    const rollerWrapEl = document.getElementById('liveRollerWrap');
+
+    function updatePreviewText(val) {
+      textEl.textContent = val || 'Get Free Quote';
+    }
+
+    function updatePaintColor(color) {
+      buttonEl.style.setProperty('--ute-paint-color', color);
+      document.getElementById('paintColorHex').textContent = color;
+    }
+
+    function updateRollerSleeveColor(color) {
+      buttonEl.style.setProperty('--ute-roller-sleeve', color);
+    }
+
+    function updateRollerHandleColor(color) {
+      buttonEl.style.setProperty('--ute-roller-handle', color);
+    }
+
+    function updateBrushShape(shapeKey) {
+      if (shapes[shapeKey]) {
+        paintLayerEl.innerHTML = shapes[shapeKey];
+      }
+    }
+
+    function toggleRoller(val) {
+      if (val === 'no') {
+        rollerWrapEl.style.display = 'none';
+      } else if (val === 'left') {
+        rollerWrapEl.style.display = 'flex';
+        rollerWrapEl.className = 'ute-roller-wrap ute-roller--left';
+      } else {
+        rollerWrapEl.style.display = 'flex';
+        rollerWrapEl.className = 'ute-roller-wrap ute-roller--right';
+      }
+    }
+
+    function updateHoverEffect(val) {
+      buttonEl.className = 'ute-creative-button ute-paint-anim-expand ute-hover-' + val;
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+      const isDark = document.body.classList.contains('dark-mode');
+      document.getElementById('themeIcon').innerHTML = isDark ? '&#9788;' : '&#9790;';
+    }
+  </script>
+</body>
+</html>
