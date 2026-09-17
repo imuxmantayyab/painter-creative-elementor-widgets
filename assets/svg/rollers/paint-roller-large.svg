@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 280" fill="none">
+  <g class="ute-roller-svg-group">
+    <!-- Heavy Duty Industrial Paint Roller -->
+    <rect class="ute-roller-sleeve ute-roller-cap" x="10" y="24" width="56" height="220" rx="10" fill="var(--ute-roller-sleeve, #FF5E4D)" stroke="var(--ute-roller-cap-color, var(--ute-roller-sleeve, #FF5E4D))" stroke-width="2" />
+    <rect x="18" y="28" width="10" height="212" rx="5" fill="#ffffff" opacity="0.25" />
+    <rect x="54" y="28" width="8" height="212" rx="4" fill="#000000" opacity="0.18" />
+    <path d="M 38,24 L 38,12 C 38,6 44,2 52,2 L 86,2 C 94,2 100,8 100,16 L 100,132 C 100,140 94,146 86,146 L 80,146 C 72,146 66,152 66,160 L 66,174 L 110,174" 
+          stroke="var(--ute-roller-frame, #8A96AA)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    <rect x="110" y="165" width="12" height="18" rx="2" fill="var(--ute-roller-frame, #6E798C)" />
+    <path d="M 122,163 C 136,161 160,160 184,159 C 206,158 218,162 220,172 C 218,181 206,186 184,185 C 160,184 136,183 122,181 Z" 
+          fill="var(--ute-roller-handle, #2B4CFF)" />
+    <line x1="145" y1="168" x2="145" y2="178" stroke="var(--ute-roller-grip, #182C9E)" stroke-width="2.5" stroke-linecap="round" />
+    <line x1="160" y1="168" x2="160" y2="178" stroke="var(--ute-roller-grip, #182C9E)" stroke-width="2.5" stroke-linecap="round" />
+    <line x1="175" y1="168" x2="175" y2="178" stroke="var(--ute-roller-grip, #182C9E)" stroke-width="2.5" stroke-linecap="round" />
+    <circle cx="206" cy="172" r="3.5" fill="#0A122E" />
+  </g>
+</svg>
