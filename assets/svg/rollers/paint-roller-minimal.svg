@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 200" fill="none">
+  <g class="ute-roller-svg-group">
+    <!-- Minimalist flat outline roller -->
+    <rect class="ute-roller-sleeve ute-roller-cap" x="8" y="24" width="34" height="150" rx="6" fill="var(--ute-roller-sleeve, #FF5E4D)" stroke="var(--ute-roller-cap-color, var(--ute-roller-sleeve, #FF5E4D))" stroke-width="3" />
+    <path d="M 25,24 L 25,12 C 25,7 28,4 33,4 L 54,4 C 60,4 64,8 64,14 L 64,95 C 64,101 60,105 54,105 L 50,105 C 44,105 40,109 40,115 L 40,126 L 70,126" 
+          stroke="var(--ute-roller-frame, #333333)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    <rect x="70" y="120" width="70" height="12" rx="6" fill="var(--ute-roller-handle, #2B4CFF)" stroke="var(--ute-roller-frame, #333333)" stroke-width="2.5" />
+    <circle cx="132" cy="126" r="2.5" fill="#ffffff" />
+  </g>
+</svg>
